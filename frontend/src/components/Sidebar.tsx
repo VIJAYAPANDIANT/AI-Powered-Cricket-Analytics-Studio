@@ -37,7 +37,10 @@ export const Sidebar: React.FC = () => {
         <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs md:hidden" onClick={() => setMobileOpen(false)}>
           <aside className="h-full w-64 bg-background border-r border-card-border p-4 flex flex-col justify-between" onClick={(e) => e.stopPropagation()}>
             <div className="space-y-6">
-              <div className="text-sm font-bold text-gradient tracking-wider uppercase opacity-80 pt-2 px-2">IPL InsightX</div>
+              <div className="flex items-center space-x-2 pt-2 px-2">
+                <img src="/logo.png" alt="IPL InsightX Logo" className="h-5 w-5 object-contain rounded" />
+                <div className="text-sm font-bold text-gradient tracking-wider uppercase opacity-80">IPL InsightX</div>
+              </div>
               <nav className="space-y-1">
                 {navItems.map((item) => {
                   const Icon = item.icon;
@@ -75,7 +78,13 @@ export const Sidebar: React.FC = () => {
       >
         <div className="flex flex-col">
           {/* Header spacer or collapse toggler */}
-          <div className="flex h-12 items-center justify-end px-3 border-b border-card-border/50">
+          <div className={`flex h-12 items-center ${collapsed ? 'justify-center' : 'justify-between pl-3 pr-2'} border-b border-card-border/50`}>
+            {!collapsed && (
+              <div className="flex items-center space-x-2">
+                <img src="/logo.png" alt="IPL InsightX Logo" className="h-5 w-5 object-contain rounded" />
+                <span className="text-xs font-bold text-gradient tracking-wider uppercase">IPL InsightX</span>
+              </div>
+            )}
             <button
               onClick={() => setCollapsed(!collapsed)}
               className="rounded-lg p-1.5 text-foreground/50 hover:bg-card-border/25 hover:text-foreground"

@@ -57,11 +57,10 @@ export const Navbar: React.FC = () => {
         <div className="flex h-16 items-center justify-between px-6">
           {/* Brand */}
           <div className="flex items-center space-x-3">
-            <Award className="h-6 w-6 text-secondary" />
+            <img src="/logo.png" alt="IPL InsightX Logo" className="h-7 w-7 object-contain rounded-md" />
             <Link href="/" className="text-xl font-bold tracking-tight text-gradient">
               IPL InsightX
             </Link>
-
           </div>
 
           {/* Right menu bar */}
