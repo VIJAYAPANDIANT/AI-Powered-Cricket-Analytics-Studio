@@ -9,6 +9,13 @@
 
 ---
 
+## 🌐 Live Deployments
+
+- **Frontend Application:** [https://ai-powered-cricket-analytics-studio.vercel.app](https://ai-powered-cricket-analytics-studio.vercel.app)
+- **Backend REST API:** [https://ai-powered-cricket-analytics-studio-phi.vercel.app](https://ai-powered-cricket-analytics-studio-phi.vercel.app)
+
+---
+
 ## 📸 Overview
 
 **IPL InsightX** is an advanced AI-powered cricket analytics studio that transforms raw ball-by-ball delivery logs and match scoreboards into actionable, tactical summaries. Built for coaches, analysts, and cricket enthusiasts.
