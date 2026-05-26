@@ -4,7 +4,11 @@ import csv from 'csv-parser';
 import { Match, Delivery, AnalyticsFilter } from '../models/types';
 import { db } from '../config/db';
 
-const UPLOAD_DIR = path.join(__dirname, '../../uploads');
+const isServerless = process.env.VERCEL === '1' || !!process.env.VERCEL;
+
+const UPLOAD_DIR = isServerless 
+  ? path.join('/tmp', 'uploads')
+  : path.join(__dirname, '../../uploads');
 
 class AnalyticsService {
   private matches: Match[] = [];

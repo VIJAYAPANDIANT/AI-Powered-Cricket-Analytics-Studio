@@ -2,11 +2,19 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 
-const UPLOAD_DIR = path.join(__dirname, '../../uploads');
+const isServerless = process.env.VERCEL === '1' || !!process.env.VERCEL;
+
+const UPLOAD_DIR = isServerless 
+  ? path.join('/tmp', 'uploads')
+  : path.join(__dirname, '../../uploads');
 
 // Ensure upload directory exists
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(UPLOAD_DIR)) {
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+  }
+} catch (error) {
+  console.error('Failed to create upload directory, likely read-only env:', error);
 }
 
 const storage = multer.diskStorage({

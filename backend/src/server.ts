@@ -56,16 +56,26 @@ app.use('/api/reports', cacheMiddleware, reportRoutes);
 app.use(errorMiddleware);
 
 // Start listening and initialize data
-app.listen(PORT, async () => {
-  console.log(`==================================================`);
-  console.log(`  IPL InsightX REST Server running on port ${PORT} `);
-  console.log(`  Target Frontend: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
-  console.log(`==================================================`);
-  
-  // Warm up analytics service on startup
-  try {
-    await analyticsService.initializeData();
-  } catch (error) {
-    console.error('Failed to initialize analytics service cache on startup:', error);
-  }
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, async () => {
+    console.log(`==================================================`);
+    console.log(`  IPL InsightX REST Server running on port ${PORT} `);
+    console.log(`  Target Frontend: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
+    console.log(`==================================================`);
+    
+    // Warm up analytics service on startup
+    try {
+      await analyticsService.initializeData();
+    } catch (error) {
+      console.error('Failed to initialize analytics service cache on startup:', error);
+    }
+  });
+} else {
+  // Warm up analytics service on serverless startup
+  console.log('Running in serverless mode (Vercel). Skipping app.listen().');
+  analyticsService.initializeData().catch((error) => {
+    console.error('Failed to initialize analytics service cache on serverless startup:', error);
+  });
+}
+
+export default app;
