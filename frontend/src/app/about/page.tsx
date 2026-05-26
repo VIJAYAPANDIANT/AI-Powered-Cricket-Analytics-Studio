@@ -129,7 +129,7 @@ export default function AboutPage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
           {/* Avatar */}
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/10 border-2 border-emerald-500/30 text-primary text-2xl font-black shadow-[0_0_20px_rgba(5,150,105,0.2)]">
-            VP
+            VJ
           </div>
           {/* Info */}
           <div className="space-y-2 flex-1">
